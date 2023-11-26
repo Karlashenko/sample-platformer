@@ -1,0 +1,9 @@
+*.DotSettings
+.DS_Store
+.idea
+Library
+Logs
+Temp
+UserSettings
+obj
+mono_crash.*

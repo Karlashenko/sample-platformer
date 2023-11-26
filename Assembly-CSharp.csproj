@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <LangVersion>9.0</LangVersion>
+    <_TargetFrameworkDirectories>non_empty_path_generated_by_unity.rider.package</_TargetFrameworkDirectories>
+    <_FullFrameworkReferenceAssemblyPaths>non_empty_path_generated_by_unity.rider.package</_FullFrameworkReferenceAssemblyPaths>
+    <DisableHandlePackageFileConflicts>true</DisableHandlePackageFileConflicts>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <RootNamespace></RootNamespace>
+    <ProjectGuid>{38def05c-9965-ba99-d9bc-e0d7ef950ee9}</ProjectGuid>
+    <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <BaseDirectory>.</BaseDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Temp\Bin\Debug\Unity.Rider.Editor\</OutputPath>
+    <DefineConstants>UNITY_EDITOR</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0169,0649</NoWarn>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoConfig>true</NoConfig>
+    <NoStdLib>true</NoStdLib>
+    <AddAdditionalExplicitAssemblyReferences>false</AddAdditionalExplicitAssemblyReferences>
+    <ImplicitlyExpandNETStandardFacades>false</ImplicitlyExpandNETStandardFacades>
+    <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
+  </PropertyGroup>
+  <ItemGroup>
+     <Folder Include="Assets" />
+     <Folder Include="Library/BuildInstructions" />
+     <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />
+     <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Overlay.shader" />
+     <Folder Include="Assets/TextMesh Pro/Sprites" />
+     <Folder Include="Assets/Store/Monster Minion Survivor PBR Polyart/Texture" />
+     <Folder Include="Assets/Store" />
+     <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile-2-Pass.shader" />
+     <Folder Include="Assets/TextMesh Pro/Resources/Sprite Assets" />
+     <Folder Include="Assets/Scenes" />
+     <Folder Include="Assets/Models" />
+     <Folder Include="Assets/Models/Enemy" />
+     <None Include="Assets/TextMesh Pro/Shaders/TMP_Bitmap.shader" />
+     <Folder Include="Assets/Store/Free Asset - 2D Handcrafted Art/Sprite" />
+     <Folder Include="Assets/Models/Rat/Textures" />
+     <Folder Include="Assets/Store/Monster Minion Survivor PBR Polyart/Mesh/Character" />
+     <Folder Include="Assets/Prefabs/UI/Screens" />
+     <Folder Include="Assets/Models/Rat" />
+     <Folder Include="Assets/URP" />
+     <Folder Include="Assets/Models/Enemy/Materials" />
+     <Folder Include="Assets/Store/Free Asset - 2D Handcrafted Art/Material" />
+     <Folder Include="Assets/TextMesh Pro/Resources/Fonts &amp; Materials" />
+     <None Include="Assets/TextMesh Pro/Shaders/TMPro_Mobile.cginc" />
+     <Folder Include="Assets/Prefabs" />
+     <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF SSD.shader" />
+     <Folder Include="Assets/Mixamo" />
+     <Folder Include="Assets/TextMesh Pro/Resources" />
+     <Folder Include="Assets/Store/Monster Minion Survivor PBR Polyart/Scene" />
+     <Folder Include="Assets/Store/Free Asset - 2D Handcrafted Art/Sprite/Moss3" />
+     <Folder Include="Assets/Prefabs/Entities" />
+     <Folder Include="Assets/Store/Free Asset - 2D Handcrafted Art/Sprite/Alg1" />
+     <Folder Include="Assets/Materials" />
+     <Folder Include="Assets/Store/Free Asset - 2D Handcrafted Art/Music" />
+     <Folder Include="Assets/Store/Monster Minion Survivor PBR Polyart/Material" />
+     <Folder Include="Assets/Store/Free Asset - 2D Handcrafted Art/Texture" />
+     <Folder Include="Assets/Source" />
+     <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Surface-Mobile.shader" />
+     <Folder Include="Assets/Models/Rat/Materials" />
+     <Folder Include="Assets/TextMesh Pro" />
+     <Folder Include="Assets/Store/Monster Minion Survivor PBR Polyart" />
+     <Folder Include="Assets/Store/Free Asset - 2D Handcrafted Art" />
+     <None Include="Assets/Store/Free Asset - 2D Handcrafted Art/Shader/NormalMappedSprite-Animated.shader" />
+     <Folder Include="Assets/Store/Monster Minion Survivor PBR Polyart/Scene/Default" />
+     <None Include="Assets/TextMesh Pro/Shaders/SDFFunctions.hlsl" />
+     <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Surface.shader" />
+     <None Include="Assets/TextMesh Pro/Sprites/EmojiOne Attribution.txt" />
+     <Folder Include="Assets/Prefabs/UI/Widgets" />
+     <None Include="Assets/TextMesh Pro/Shaders/TMP_Bitmap-Custom-Atlas.shader" />
+     <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF.shader" />
+     <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile SSD.shader" />
+     <None Include="Assets/TextMesh Pro/Resources/LineBreaking Leading Characters.txt" />
+     <Folder Include="Assets/Store/Monster Minion Survivor PBR Polyart/Mesh" />
+     <Folder Include="Assets/Store/Monster Minion Survivor PBR Polyart/Animation/Swarm08" />
+     <None Include="Assets/TextMesh Pro/Shaders/TMPro_Properties.cginc" />
+     <Folder Include="Assets/Prefabs/Weapon" />
+     <None Include="Assets/TextMesh Pro/Shaders/TMPro_Surface.cginc" />
+     <Folder Include="Assets/Animations" />
+     <Folder Include="Assets/TextMesh Pro/Shaders" />
+     <None Include="Assets/Store/Free Asset - 2D Handcrafted Art/Readme.txt" />
+     <Folder Include="Assets/TextMesh Pro/Resources/Style Sheets" />
+     <Folder Include="Assets/TextMesh Pro/Fonts" />
+     <Folder Include="Assets/Store/Monster Minion Survivor PBR Polyart/Prefab" />
+     <None Include="Assets/TextMesh Pro/Resources/LineBreaking Following Characters.txt" />
+     <Folder Include="Assets/Prefabs/Obstacles" />
+     <Folder Include="Assets/Models/Enemy/Textures" />
+     <Folder Include="Assets/Prefabs/UI" />
+     <Folder Include="Assets/Store/Free Asset - 2D Handcrafted Art/Sprite/Moss2" />
+     <Folder Include="Assets/Store/Monster Minion Survivor PBR Polyart/Texture/DefaultPBR" />
+     <Folder Include="Assets/Store/Free Asset - 2D Handcrafted Art/Sprite/Moss1" />
+     <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Masking.shader" />
+     <Folder Include="Assets/Store/Free Asset - 2D Handcrafted Art/Prefab" />
+     <Folder Include="Assets/Store/Monster Minion Survivor PBR Polyart/Animation/Swarm09" />
+     <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF Overlay.shader" />
+     <None Include="Assets/TextMesh Pro/Shaders/TMP_Bitmap-Mobile.shader" />
+     <None Include="Assets/TextMesh Pro/Fonts/LiberationSans - OFL.txt" />
+     <Folder Include="Assets/Store/Monster Minion Survivor PBR Polyart/Animation" />
+     <Folder Include="Assets/TextMesh Pro/Documentation" />
+     <Folder Include="Assets/Store/Free Asset - 2D Handcrafted Art/Sprite/Surface1" />
+     <None Include="Assets/Store/Free Asset - 2D Handcrafted Art/Shader/NormalMappedTileAnimated.shader" />
+     <Folder Include="Assets/Store/Free Asset - 2D Handcrafted Art/Shader" />
+     <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader" />
+     <None Include="Assets/TextMesh Pro/Sprites/EmojiOne.json" />
+     <Folder Include="Assets/Store/Free Asset - 2D Handcrafted Art/Animation" />
+     <None Include="Assets/TextMesh Pro/Shaders/TMP_Sprite.shader" />
+     <Reference Include="UnityEngine">
+     <HintPath>/Applications/Unity/Hub/Editor/2023.2.0b15/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEngine.CoreModule">
+     <HintPath>/Applications/Unity/Hub/Editor/2023.2.0b15/Unity.app/Contents/Managed/UnityEngine/UnityEngine.CoreModule.dll</HintPath>
+     </Reference>
+     <Reference Include="UnityEditor">
+     <HintPath>/Applications/Unity/Hub/Editor/2023.2.0b15/Unity.app/Contents/Managed/UnityEngine/UnityEditor.dll</HintPath>
+     </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
