@@ -10,8 +10,8 @@ namespace Sample.AI
         public readonly Dictionary<BehaviourTreeNode, int> RunningNodeIndices = new();
 
         public Vector3? TargetPoint;
-        public GameObject TargetUnit;
-        public GameObject PreviousTargetUnit;
+        public GameObject? TargetUnit;
+        public GameObject? PreviousTargetUnit;
 
         public BehaviourTreeContext(GameObject owner)
         {

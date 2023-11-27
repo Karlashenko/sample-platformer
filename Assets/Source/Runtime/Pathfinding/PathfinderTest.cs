@@ -12,6 +12,7 @@ namespace Sample.Pathfinding
         [SerializeField] private Transform _origin;
         [SerializeField] private Transform _target;
 
+        #if UNITY_EDITOR
         private async void OnDrawGizmos()
         {
             if (!_drawGizmos)
@@ -70,5 +71,6 @@ namespace Sample.Pathfinding
                 Gizmos.DrawLine(node.Position, _waypoints.GetWaypointAt(node.ParentWaypointIndex).Position);
             }
         }
+        #endif
     }
 }

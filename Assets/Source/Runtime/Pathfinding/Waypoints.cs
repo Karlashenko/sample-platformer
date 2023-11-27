@@ -71,7 +71,7 @@ namespace Sample.Pathfinding
             return _connections;
         }
 
-        public Waypoint FindClosestWalkableToWorldPoint(Vector2 point, int range = 5)
+        public Waypoint FindClosestWalkableToWorldPoint(Vector2 point, int range = 20)
         {
             var relative = point - _origin;
 

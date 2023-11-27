@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Threading;
+﻿using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -8,9 +7,9 @@ namespace Sample.AI
     public class BehaviourTree
     {
         public readonly BehaviourTreeContext Context;
-        public readonly BehaviourTreeNodeContainer Root;
+        public readonly BehaviourTreeCompositeNode Root;
 
-        public BehaviourTree(BehaviourTreeNodeContainer root, GameObject unit)
+        public BehaviourTree(BehaviourTreeCompositeNode root, GameObject unit)
         {
             Root = root;
             Context = new BehaviourTreeContext(unit);
@@ -18,7 +17,7 @@ namespace Sample.AI
 
         public BehaviourTreeNode GetFirstRunningNode()
         {
-            return Context.RunningNodes.Count > 0 ? Context.RunningNodes.First() : Root;
+            return Context.RunningNodes.Count > 0 ? Context.RunningNodes[0] : Root;
         }
 
         public async UniTask Tick(float deltaTime, CancellationToken cancellationToken)
@@ -28,7 +27,7 @@ namespace Sample.AI
 
         public void DrawGizmos()
         {
-            GetFirstRunningNode().DrawGizmos();
+            GetFirstRunningNode().DrawGizmos(Context);
         }
     }
 }

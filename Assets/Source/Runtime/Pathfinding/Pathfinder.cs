@@ -26,7 +26,7 @@ namespace Sample.Pathfinding
             job.Waypoints = _waypoints.GetWaypoints();
             job.Connections = _waypoints.GetConnections();
             job.Result = new NativeList<PathfinderNode>(16, Allocator.Persistent);
-            await job.Schedule().WaitAsync(PlayerLoopTiming.PostLateUpdate, cancellationToken);
+            await job.Schedule();
 
             if (job.Result.Length > 1)
             {
@@ -35,7 +35,6 @@ namespace Sample.Pathfinding
 
             job.Result.Dispose();
             return null;
-
         }
     }
 }

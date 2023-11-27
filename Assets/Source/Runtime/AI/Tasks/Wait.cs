@@ -1,17 +1,27 @@
 ﻿using System.Threading;
 using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace Sample.AI.Tasks
 {
-    public class Wait : BehaviourTreeLogicNode
+    public class Wait : BehaviourTreeNode
     {
-        private readonly float _duration;
+        private readonly float _min;
+        private readonly float _max;
+
+        private float _duration;
 
         private float _counter;
 
-        public Wait(BehaviourTreeProperties properties) : base(properties)
+        public Wait(float min, float? max)
         {
-            _duration = properties.WaitDuration;
+            _min = min;
+            _max = max ?? min;
+        }
+
+        protected override void OnStart(BehaviourTreeContext context)
+        {
+            _duration = Random.Range(_min, _max);
         }
 
         protected override void OnStop(BehaviourTreeContext context)
@@ -23,7 +33,8 @@ namespace Sample.AI.Tasks
         {
             _counter += deltaTime;
 
-            var status = _counter >= _duration ? BehaviourTreeStatus.Success : BehaviourTreeStatus.Running;
+            var status = _counter >= _duration ?
+                BehaviourTreeStatus.Success : BehaviourTreeStatus.Running;
 
             return UniTask.FromResult(status);
         }

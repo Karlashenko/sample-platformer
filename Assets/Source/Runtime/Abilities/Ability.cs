@@ -1,3 +1,4 @@
+using System;
 using System.Diagnostics;
 using System.Threading;
 using Cysharp.Threading.Tasks;
@@ -19,8 +20,15 @@ namespace Sample.Abilities
 
         public async UniTask Use(CancellationToken cancellationToken = default(CancellationToken))
         {
-            Debug.Assert(IsRunning, $"Ability '{GetType().Name}' is still running.");
-            Debug.Assert(IsOnCooldown, $"Ability '{GetType().Name}' is on cooldown.");
+            if (IsRunning)
+            {
+                throw new Exception($"Ability '{GetType().Name}' is still running.");
+            }
+
+            if (IsOnCooldown)
+            {
+                throw new Exception($"Ability '{GetType().Name}' is on cooldown.");
+            }
 
             _stopwatch.Restart();
 

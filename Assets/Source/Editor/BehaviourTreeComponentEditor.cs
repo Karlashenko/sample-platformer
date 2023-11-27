@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 using Sample.AI;
-using Sample.Components;
+using Sample.Components.Entities;
 using UnityEditor;
 using UnityEngine;
 
@@ -10,7 +10,7 @@ namespace Sample.Editor
     [CustomEditor(typeof(BehaviourTreeComponent))]
     public class BehaviourTreeComponentEditor : UnityEditor.Editor
     {
-        private BehaviourTreeComponent _behaviourTree;
+        private BehaviourTreeComponent? _behaviourTree;
 
         private void OnEnable()
         {
@@ -21,21 +21,21 @@ namespace Sample.Editor
         {
             base.OnInspectorGUI();
 
-            if (_behaviourTree.BehaviourTree == null)
+            if (_behaviourTree?.BehaviourTree == null)
             {
                 return;
             }
 
             GUILayout.Space(25);
             EditorGUILayout.LabelField("Target Entity", _behaviourTree.BehaviourTree.Context.TargetUnit == null ? "Null" : _behaviourTree.BehaviourTree.Context.TargetUnit.name);
-            EditorGUILayout.LabelField("Target Point", _behaviourTree.BehaviourTree.Context.TargetPoint.HasValue ? _behaviourTree.BehaviourTree.Context.TargetPoint.Value.ToString() : "Null");
+            EditorGUILayout.LabelField("Target Point", _behaviourTree.BehaviourTree.Context.TargetPoint.ToString());
             EditorGUILayout.LabelField("Opened Nodes", string.Join(", ", _behaviourTree.BehaviourTree.Context.RunningNodes.Select(node => node.GetType().Name)));
             GUILayout.Space(25);
             DisplayParentNode(_behaviourTree.BehaviourTree, _behaviourTree.BehaviourTree.Root, 0);
             GUILayout.Space(25);
         }
 
-        private void DisplayParentNode(BehaviourTree tree, BehaviourTreeNodeContainer node, int level)
+        private void DisplayParentNode(BehaviourTree tree, BehaviourTreeCompositeNode node, int level)
         {
             var style = new GUIStyle(GUI.skin.label)
             {
@@ -48,7 +48,7 @@ namespace Sample.Editor
 
             foreach (var child in node.Nodes)
             {
-                if (child is BehaviourTreeNodeContainer subParent)
+                if (child is BehaviourTreeCompositeNode subParent)
                 {
                     DisplayParentNode(tree, subParent, level + 1);
                     continue;

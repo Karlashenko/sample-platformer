@@ -3,16 +3,19 @@ using Cysharp.Threading.Tasks;
 
 namespace Sample.AI.Conditions
 {
-    public class IsTargetUnitInRange : BehaviourTreeLogicNode
+    public class IsTargetUnitInRange : BehaviourTreeNode
     {
-        public IsTargetUnitInRange(BehaviourTreeProperties properties) : base(properties)
+        private readonly float _range;
+
+        public IsTargetUnitInRange(float range)
         {
+            _range = range;
         }
 
         protected override UniTask<BehaviourTreeStatus> OnTick(float deltaTime, BehaviourTreeContext context, CancellationToken cancellationToken)
         {
             var sqrMagnitude = (context.TargetUnit.transform.position - context.Owner.transform.position).sqrMagnitude;
-            var status = sqrMagnitude < Properties.Range * Properties.Range ? BehaviourTreeStatus.Success : BehaviourTreeStatus.Failure;
+            var status = sqrMagnitude < _range * _range ? BehaviourTreeStatus.Success : BehaviourTreeStatus.Failure;
             return UniTask.FromResult(status);
         }
     }

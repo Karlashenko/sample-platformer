@@ -1,4 +1,4 @@
-using Sample.Components;
+using Sample.Components.Entities;
 using Sample.Extensions;
 using TMPro;
 using UnityEngine;
@@ -12,8 +12,8 @@ namespace Sample.UI.Widgets
         [SerializeField] private Image _fillImage = null!;
         [SerializeField] private RectTransform _container = null!;
 
-        private HealthComponent _health;
-        private Camera _camera;
+        private HealthComponent _health = null!;
+        private Camera _camera = null!;
 
         public void Construct(HealthComponent health, Camera camera)
         {
@@ -59,7 +59,7 @@ namespace Sample.UI.Widgets
             }
             #endif
 
-            transform.position = _camera.WorldToScreenPoint(_health.transform.position + new Vector3(0, 1));
+            transform.position = _camera.WorldToScreenPoint(_health.transform.position + new Vector3(0, 1.5f));
         }
 
         private void OnHealthDamaged(DamageEvent payload)

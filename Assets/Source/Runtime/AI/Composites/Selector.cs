@@ -4,7 +4,7 @@ using Sample.Extensions;
 
 namespace Sample.AI.Composites
 {
-    public class Selector : BehaviourTreeNodeContainer
+    public class Selector : BehaviourTreeCompositeNode
     {
         protected override async UniTask<BehaviourTreeStatus> OnTick(float deltaTime, BehaviourTreeContext context, CancellationToken cancellationToken)
         {

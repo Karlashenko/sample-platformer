@@ -16,5 +16,10 @@ namespace Sample
         {
             _context[typeof(T)] = element;
         }
+
+        public static void Clear()
+        {
+            _context.Clear();
+        }
     }
 }

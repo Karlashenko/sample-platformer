@@ -4,8 +4,13 @@ using Sample.Extensions;
 
 namespace Sample.AI.Composites
 {
-    public class Sequence : BehaviourTreeNodeContainer
+    public class Sequence : BehaviourTreeCompositeNode
     {
+        public Sequence(params BehaviourTreeNode[] nodes)
+        {
+            Nodes.AddRange(nodes);
+        }
+
         protected override async UniTask<BehaviourTreeStatus> OnTick(float deltaTime, BehaviourTreeContext context, CancellationToken cancellationToken)
         {
             var index = context.RunningNodeIndices.GetValueOrDefault(this, 0);

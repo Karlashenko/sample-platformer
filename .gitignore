@@ -4,6 +4,7 @@
 Library
 Logs
 Temp
+Builds
 UserSettings
 obj
 mono_crash.*

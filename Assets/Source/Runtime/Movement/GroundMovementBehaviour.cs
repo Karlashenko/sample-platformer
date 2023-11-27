@@ -1,5 +1,5 @@
+using Cysharp.Threading.Tasks;
 using Sample.Extensions;
-using Sample.Systems;
 using Sample.Utils;
 using UnityEngine;
 
@@ -12,7 +12,6 @@ namespace Sample.Movement
 
         private readonly GroundMovementBehaviourSettings _settings;
         private readonly Configuration _configuration;
-        private readonly CoroutineRunner _coroutineRunner;
 
         private float _jumpInputToleranceTimer;
         private float _jumpLedgeToleranceTimer;
@@ -30,7 +29,6 @@ namespace Sample.Movement
         {
             _settings = settings;
             _configuration = Context.Get<Configuration>();
-            _coroutineRunner = Context.Get<CoroutineRunner>();
         }
 
         public float GetGravity()
@@ -91,9 +89,14 @@ namespace Sample.Movement
 
             Velocity.y = -2;
 
-            // TODO: Replace time controller
+            FallThroughPlatforms().Forget();
+        }
+
+        private async UniTask FallThroughPlatforms()
+        {
             MovementSystem.IsFallingThroughPlatforms = true;
-            _coroutineRunner.Wait(0.25f, () => MovementSystem.IsFallingThroughPlatforms = false);
+            await UniTask.Delay(250);
+            MovementSystem.IsFallingThroughPlatforms = false;
         }
 
         private void HandleWallSliding()

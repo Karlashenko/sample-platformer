@@ -20,7 +20,7 @@ namespace Sample.Movement
         public bool MovingUpTheSlope;
         public bool MovingDownTheSlope;
         public bool SlidingDownTheSlope;
-        public Collider2D PlatformStandingOn;
+        public Collider2D? PlatformStandingOn;
         public Vector2 CollisionNormalHorizontal;
         public Vector2 CollisionNormalVertical;
         public bool IsCollisionEnabled = true;
@@ -37,10 +37,10 @@ namespace Sample.Movement
 
         public void Translate(Transform transform, BoxCollider2D collider, Vector2 translation)
         {
+            ResetState();
+
             RaycastDirection.x = Mathf.Approximately(translation.x, 0) ? RaycastDirection.x : translation.x.CompareTo(0);
             RaycastDirection.y = Mathf.Approximately(translation.y, 0) ? RaycastDirection.y : translation.y.CompareTo(0);
-
-            ResetState();
 
             if (IsCollisionEnabled)
             {
@@ -53,14 +53,14 @@ namespace Sample.Movement
                 Debug.DrawLine(bounds.GetTopLeft(), bounds.GetBottomLeft(), Color.cyan);
                 #endif
 
-                //TranslateUpTheSlope(ref translation, bounds);
+                TranslateUpTheSlope(ref translation, bounds);
 
                 if (!MovingUpTheSlope)
                 {
                     CollideHorizontally(ref translation, bounds, transform);
                 }
 
-                //TranslateDownTheSlope(ref translation, bounds);
+                TranslateDownTheSlope(ref translation, bounds);
 
                 if (!MovingDownTheSlope && !SlidingDownTheSlope)
                 {
@@ -164,12 +164,14 @@ namespace Sample.Movement
 
         private void TranslateUpTheSlope(ref Vector2 translation, in Bounds bounds)
         {
-            if (IsFallingThroughPlatforms || Mathf.Approximately(translation.x, 0))
+            if (IsFallingThroughPlatforms)
             {
                 return;
             }
 
-            var rayLength = BoundingBoxInset + Mathf.Abs(translation.x);
+            var step = Mathf.Abs(translation.x);
+
+            var rayLength = BoundingBoxInset + 0.1f;
             var rayOrigin = RaycastDirection.x > 0 ? bounds.GetBottomRight() : bounds.GetBottomLeft();
 
             var raycastHit = Physics2D.Raycast(rayOrigin, Vector2.right * RaycastDirection.x, rayLength, _configuration.CollisionMask | _configuration.PlatformMask);
@@ -186,7 +188,6 @@ namespace Sample.Movement
                 return;
             }
 
-            var step = Mathf.Abs(translation.x);
             var translationY = Mathf.Sin(slopeAngle * Mathf.Deg2Rad) * step;
 
             // Jumping
@@ -201,7 +202,7 @@ namespace Sample.Movement
             PlatformStandingOn = raycastHit.collider;
             IsStandingOnPlatform = _configuration.PlatformMask.ContainsLayer(raycastHit.collider.gameObject.layer);
 
-            translation.x = Mathf.Cos(SlopeAngle * Mathf.Deg2Rad) * step * RaycastDirection.x;
+            translation.x = Mathf.Cos(SlopeAngle * Mathf.Deg2Rad) * step * Mathf.Sign(translation.x);
             translation.y = translationY;
         }
 
@@ -226,7 +227,9 @@ namespace Sample.Movement
                 return;
             }
 
-            if (raycastHit.distance - BoundingBoxInset > _maxSlopeAngleTangent * Mathf.Abs(translation.x))
+            var step = Mathf.Abs(translation.x);
+
+            if (raycastHit.distance - BoundingBoxInset > _maxSlopeAngleTangent * step)
             {
                 return;
             }
@@ -244,7 +247,8 @@ namespace Sample.Movement
             PlatformStandingOn = raycastHit.collider;
             IsStandingOnPlatform = _configuration.PlatformMask.ContainsLayer(raycastHit.collider.gameObject.layer);
 
-            translation.y -= Mathf.Abs(raycastHit.point.y - raycastOrigin.y) - BoundingBoxInset;
+            translation.x = Mathf.Cos(slopeAngle * Mathf.Deg2Rad) * step * Mathf.Sign(translation.x);
+            translation.y -= Mathf.Sin(slopeAngle * Mathf.Deg2Rad) * step;
         }
 
         private bool SlideDownTheSlope(ref Vector2 translation, in Vector2 origin)

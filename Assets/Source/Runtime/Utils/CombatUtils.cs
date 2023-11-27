@@ -1,4 +1,4 @@
-using Sample.Components;
+using Sample.Components.Entities;
 using UnityEngine;
 
 namespace Sample.Utils

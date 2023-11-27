@@ -13,7 +13,9 @@ GameObject:
   - component: {fileID: 7711016831212245551}
   - component: {fileID: 1383368542058848998}
   - component: {fileID: 2957872265295873848}
+  - component: {fileID: -1631772734965739779}
   - component: {fileID: 2032743859287938519}
+  - component: {fileID: -3843930622172690900}
   - component: {fileID: 8622319093622058556}
   - component: {fileID: 5370978363333675243}
   m_Layer: 0
@@ -66,10 +68,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _preset: 2
-  _properties:
-    WaitDuration: 0
-    FollowTargetStopDistance: 0
-    Range: 2
 --- !u!114 &1383368542058848998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,6 +95,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 5
+--- !u!114 &-1631772734965739779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2322179681850569867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d38e88ba9f24cf08c756b7169cebf0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2032743859287938519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,8 +120,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _abilities: {fileID: 8622319093622058556}
-  _attackDelay: 0
-  _attackDuration: 0
+  _attackParameters:
+    Area: {x: 2, y: 2}
+    Range: 0
+    Animation: Attack
+    AttackDelay: 0
+    AttackDuration: 0
+    Cooldown: 2000
+--- !u!114 &-3843930622172690900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2322179681850569867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b979f230f1148929eada0d62eb282ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _range: {x: 10, y: 5}
 --- !u!114 &8622319093622058556
 MonoBehaviour:
   m_ObjectHideFlags: 0

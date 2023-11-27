@@ -6,11 +6,11 @@ namespace Sample.AI
 {
     public class BehaviourTreeBuilder
     {
-        private readonly Stack<BehaviourTreeNodeContainer> _containers = new();
+        private readonly Stack<BehaviourTreeCompositeNode> _containers = new();
 
-        private BehaviourTreeNodeContainer _top;
+        private BehaviourTreeCompositeNode _top;
 
-        public BehaviourTreeBuilder BeginComposite(BehaviourTreeNodeContainer container)
+        public BehaviourTreeBuilder Begin(BehaviourTreeCompositeNode container)
         {
             if (_containers.Count > 0)
             {
@@ -39,7 +39,7 @@ namespace Sample.AI
             return this;
         }
 
-        public BehaviourTreeBuilder EndComposite()
+        public BehaviourTreeBuilder End()
         {
             _top = _containers.Pop();
 

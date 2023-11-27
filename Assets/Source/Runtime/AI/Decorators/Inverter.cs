@@ -1,20 +1,22 @@
-﻿using System;
-using System.Linq;
-using System.Threading;
+﻿using System.Threading;
 using Cysharp.Threading.Tasks;
 
 namespace Sample.AI.Decorators
 {
-    public class Inverter : BehaviourTreeNodeContainer
+    public class Inverter : BehaviourTreeCompositeNode
     {
+        public Inverter()
+        {
+        }
+
+        public Inverter(BehaviourTreeNode node)
+        {
+            AddNode(node);
+        }
+
         protected override async UniTask<BehaviourTreeStatus> OnTick(float deltaTime, BehaviourTreeContext context, CancellationToken cancellationToken)
         {
-            if (Nodes.Count == 0)
-            {
-                throw new Exception($"{GetType().Name} must have a child node!");
-            }
-
-            var status = await Nodes.First().Tick(deltaTime, context, cancellationToken);
+            var status = await Nodes[0].Tick(deltaTime, context, cancellationToken);
 
             if (status == BehaviourTreeStatus.Failure)
             {

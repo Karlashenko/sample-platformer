@@ -3,7 +3,7 @@ using Cysharp.Threading.Tasks;
 
 namespace Sample.AI.Composites
 {
-    public class Tree : BehaviourTreeNodeContainer
+    public class Tree : BehaviourTreeCompositeNode
     {
         protected override async UniTask<BehaviourTreeStatus> OnTick(float deltaTime, BehaviourTreeContext context, CancellationToken cancellationToken)
         {

@@ -1,8 +1,7 @@
 using System;
 using System.Threading;
-using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
-using Sample.Components;
+using Sample.Components.Entities;
 using Sample.Utils;
 using Sample.Values;
 using UnityEngine;
@@ -16,37 +15,44 @@ namespace Sample.Abilities
         private static readonly Collider2D[] _hits = new Collider2D[MaxTargets];
 
         private readonly GameObject _owner;
+        private readonly Damage _damage;
         private readonly MeleeAttackAbilityParameters _parameters;
         private readonly MovementComponent? _movement;
         private readonly InputComponent? _input;
         private readonly Animator? _animator;
-        private readonly Bounds _bounds;
+        private readonly BoxCollider2D _boxCollider;
         private readonly Configuration _configuration;
 
-        public MeleeAttackAbility(GameObject owner, MeleeAttackAbilityParameters parameters) : base(0)
+        public MeleeAttackAbility(GameObject owner, Damage damage, MeleeAttackAbilityParameters parameters) : base(parameters.Cooldown)
         {
             _owner = owner;
+            _damage = damage;
             _parameters = parameters;
 
             _movement = _owner.GetComponent<MovementComponent>();
             _input = _owner.GetComponent<InputComponent>();
             _animator = _owner.GetComponentInChildren<Animator>();
-            _bounds = _owner.GetComponent<BoxCollider2D>().bounds;
+            _boxCollider = _owner.GetComponent<BoxCollider2D>();
             _configuration = Context.Get<Configuration>();
         }
 
         protected override async UniTask OnUse(CancellationToken cancellationToken = default(CancellationToken))
         {
-            _animator?.Play(_parameters.Animation);
-
             _input?.ResetState();
             _input?.Disable();
 
-            {
-                await UniTask.Delay((int) (_parameters.AttackDelay * 1000), cancellationToken: cancellationToken);
+            _animator?.SetBool("Mute", true);
+            _animator?.Play(_parameters.Animation);
 
-                var epicenter = _bounds.center + new Vector3(_parameters.Range * _movement?.GetDirection().x ?? 0, 0);
+            {
+                await UniTask.Delay(_parameters.AttackDelay, cancellationToken: cancellationToken);
+
+                var epicenter = _boxCollider.bounds.center + new Vector3(_parameters.Range * _movement?.GetDirection().x ?? 0, 0);
                 var size = Physics2D.OverlapBox(epicenter, _parameters.Area, 0, _configuration.DamageContactFilter, _hits);
+
+                #if UNITY_EDITOR
+                DebugUtils.DrawRect(epicenter, _parameters.Area, Color.red);
+                #endif
 
                 for (var i = 0; i < Math.Clamp(size, 0, MaxTargets); i++)
                 {
@@ -61,17 +67,14 @@ namespace Sample.Abilities
 
                     if (health)
                     {
-                        health.Damage(_parameters.Damage, _owner);
+                        health.Damage(_damage, _owner);
                     }
                 }
 
-                await UniTask.Delay((int) (_parameters.AttackDuration * 1000), cancellationToken: cancellationToken);
-
-                #if UNITY_EDITOR
-                DebugUtils.DrawRect(epicenter, _parameters.Area, Color.red);
-                #endif
+                await UniTask.Delay(_parameters.AttackDuration, cancellationToken: cancellationToken);
             }
 
+            _animator?.SetBool("Mute", false);
             _input?.Enable();
         }
     }
@@ -79,21 +82,21 @@ namespace Sample.Abilities
     [Serializable]
     public class MeleeAttackAbilityParameters
     {
-        public readonly Damage Damage;
-        public readonly Vector2 Area;
-        public readonly float Range;
-        public readonly string Animation;
-        public readonly float AttackDelay;
-        public readonly float AttackDuration;
+        public Vector2 Area;
+        public float Range;
+        public string Animation;
+        public int AttackDelay;
+        public int AttackDuration;
+        public int Cooldown;
 
-        public MeleeAttackAbilityParameters(Damage damage, Vector2 area, float range, string animation, float attackDelay, float attackDuration)
+        public MeleeAttackAbilityParameters(Vector2 area, float range, string animation, int attackDelay, int attackDuration, int cooldown)
         {
-            Damage = damage;
             Area = area;
             Range = range;
             Animation = animation;
             AttackDelay = attackDelay;
             AttackDuration = attackDuration;
+            Cooldown = cooldown;
         }
     }
 }

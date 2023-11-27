@@ -1,20 +1,13 @@
-﻿using System;
-using System.Linq;
-using System.Threading;
+﻿using System.Threading;
 using Cysharp.Threading.Tasks;
 
 namespace Sample.AI.Decorators
 {
-    public class Succeeder : BehaviourTreeNodeContainer
+    public class Succeeder : BehaviourTreeCompositeNode
     {
         protected override async UniTask<BehaviourTreeStatus> OnTick(float deltaTime, BehaviourTreeContext context, CancellationToken cancellationToken)
         {
-            if (Nodes.Count == 0)
-            {
-                throw new ApplicationException($"{GetType().Name} must have a child node!");
-            }
-
-            return await Nodes.First().Tick(deltaTime, context, cancellationToken) == BehaviourTreeStatus.Running
+            return await Nodes[0].Tick(deltaTime, context, cancellationToken) == BehaviourTreeStatus.Running
                 ? BehaviourTreeStatus.Running
                 : BehaviourTreeStatus.Success;
         }

@@ -72,6 +72,7 @@
      <Folder Include="Assets/Store/Free Asset - 2D Handcrafted Art/Sprite/Moss3" />
      <Folder Include="Assets/Prefabs/Entities" />
      <Folder Include="Assets/Store/Free Asset - 2D Handcrafted Art/Sprite/Alg1" />
+     <Folder Include="Assets/Prefabs/Levels" />
      <Folder Include="Assets/Materials" />
      <Folder Include="Assets/Store/Free Asset - 2D Handcrafted Art/Music" />
      <Folder Include="Assets/Store/Monster Minion Survivor PBR Polyart/Material" />
@@ -104,7 +105,7 @@
      <Folder Include="Assets/TextMesh Pro/Fonts" />
      <Folder Include="Assets/Store/Monster Minion Survivor PBR Polyart/Prefab" />
      <None Include="Assets/TextMesh Pro/Resources/LineBreaking Following Characters.txt" />
-     <Folder Include="Assets/Prefabs/Obstacles" />
+     <Folder Include="Assets/Prefabs/Environment" />
      <Folder Include="Assets/Models/Enemy/Textures" />
      <Folder Include="Assets/Prefabs/UI" />
      <Folder Include="Assets/Store/Free Asset - 2D Handcrafted Art/Sprite/Moss2" />
